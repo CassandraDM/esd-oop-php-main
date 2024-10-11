@@ -1,8 +1,8 @@
 <?php require_once('./order/view/partials/header.php'); ?>
 
 <main>
-	<p>Your order has been paid with success!... or maybe not, we are not really sure.
-	</p>
+	<h3 class="success">Your order has been paid with success!... or maybe not, we are not really sure.</h3>
+
 </main>
 
 

@@ -2,6 +2,7 @@
 
 require_once './order/model/entity/Order.php';
 require_once './order/model/repository/OrderRepository.php';
+require_once './product/model/repository/ProductRepository.php';
 
 
 class CreateOrderController
@@ -18,6 +19,8 @@ class CreateOrderController
 				require_once './order/view/order-error.php';
 				return;
 			}
+			$productRepository = new ProductRepository();
+			$allProducts = $productRepository->findAllProducts();
 
 			$customerName = $_POST['customerName'];
 			$products = $_POST['products'];

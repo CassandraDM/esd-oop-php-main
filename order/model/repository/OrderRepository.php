@@ -23,4 +23,11 @@ class OrderRepository
         }
         return $_SESSION['order'];
     }
+    public function findAllProducts()
+    {
+        if (!isset($_SESSION['product'])) {
+            return null;
+        }
+        return $_SESSION['product'];
+    }
 }

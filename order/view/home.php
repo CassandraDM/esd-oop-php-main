@@ -1,4 +1,5 @@
-<?php require_once('./order/view/partials/header.php'); ?>
+<?php require_once('./order/view/partials/header.php');
+require_once './product/model/entity/Product.php'; ?>
 <main>
 
 	<form method="POST" action="http://localhost:8888/esd-oop-php-main/create-order">
@@ -10,12 +11,17 @@
 		<label for="product">Products</label>
 
 		<select id="product" name="products[]" multiple>
-			<option value="tshirt">T-shirt</option>
-			<option value="jeans">Jeans</option>
-			<option value="shoes">Shoest</option>
-			<option value="short">Shorts</option>
-			<option value="cap">Cap</option>
-			<option value="pull">Sweatshirt</option>
+			<?php
+			foreach ($allProducts as $product) {
+				if (!$product->getActive()) {
+					continue;
+				}
+				$productName = $product->getProductName();
+			?>
+				<option><?php echo htmlspecialchars($productName); ?></option>
+			<?php
+			}
+			?>
 		</select>
 		<br>
 
