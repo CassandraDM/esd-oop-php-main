@@ -2,7 +2,7 @@
 
 <main>
 	<p>Shipping Address has been successfully added! </p>
-	<a href="http://localhost:8888/esd-oop-php-main/set-shipping-method">Continue</a>
+	<a class="next-page" href="http://localhost:8888/esd-oop-php-main/set-shipping-method">Continue</a>
 </main>
 
 

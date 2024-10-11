@@ -2,7 +2,7 @@
 
 <main>
 	<p>Shipping method has been successfully added!</p>
-	<a href="http://localhost:8888/esd-oop-php-main/pay">Continue</a>
+	<a class="next-page" href="http://localhost:8888/esd-oop-php-main/pay">Continue</a>
 </main>
 
 

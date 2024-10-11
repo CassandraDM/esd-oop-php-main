@@ -2,7 +2,7 @@
 
 <main>
 	<p>Order created with success!</p>
-	<a href="http://localhost:8888/esd-oop-php-main/set-shipping-address">Continue</a>
+	<a class="next-page" href="http://localhost:8888/esd-oop-php-main/set-shipping-address">Continue</a>
 </main>
 
 
