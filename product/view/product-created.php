@@ -1,5 +1,5 @@
 <?php
-require_once './product/view/partials/header.php';
+require_once './common/view/partials/header.php';
 require_once './product/model/entity/Product.php';
 $productName = $product->getProductName();
 $description = $product->getDescription();
@@ -19,5 +19,5 @@ $active = $product->getActive() ? 'Yes' : 'No';
 </main>
 
 <?php
-require_once './product/view/partials/footer.php';
+require_once './common/view/partials/footer.php';
 ?>

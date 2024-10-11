@@ -15,7 +15,7 @@ class Order
 	public static $PAID_SHIPPING_METHOD = 'Chronopost Express';
 	public static $PAID_SHIPPING_METHODS_COST = 5;
 
-	private array $products;
+	private array $products = [];
 
 	private string $customerName;
 
@@ -48,11 +48,41 @@ class Order
 		$this->status = Order::$CART_STATUS;
 		$this->createdAt = new DateTime();
 		$this->id = rand();
-		$this->products = $products;
 		$this->customerName = $customerName;
 		$this->totalPrice = count($products) * Order::$UNIQUE_PRODUCT_PRICE;
+		$this->products = $products;
 	}
 
+	public function getCustomerName(): string
+	{
+		return $this->customerName;
+	}
+	public function getProducts(): array
+	{
+		return $this->products;
+	}
+
+	public function getTotalPrice(): float
+	{
+		return $this->totalPrice;
+	}
+
+	public function getShippingMethod(): ?string
+	{
+		return $this->shippingMethod;
+	}
+	public function getShippingCity(): ?string
+	{
+		return $this->shippingCity;
+	}
+	public function getShippingAddress(): ?string
+	{
+		return $this->shippingAddress;
+	}
+	public function getShippingCountry(): ?string
+	{
+		return $this->shippingCountry;
+	}
 
 
 	private function calculateTotalCart(): float
@@ -67,7 +97,7 @@ class Order
 		$this->totalPrice = $this->calculateTotalCart();
 
 		$productsAsString = implode(',', $this->products);
-		echo "Liste des produits : {$productsAsString}</br></br>";
+		echo "Product List : {$productsAsString}</br></br>";
 	}
 
 	private function removeProductFromList(string $product)
@@ -82,15 +112,15 @@ class Order
 	{
 
 		if ($this->isProductInCart($product)) {
-			throw new Exception('Le produit existe déjà dans le panier');
+			throw new Exception('Product already in cart');
 		}
 
 		if ($this->status === Order::$CART_STATUS) {
-			throw new Exception('Vous ne pouvez plus ajouter de produits');
+			throw new Exception('You can no longer add products to the cart');
 		}
 
 		if (count($this->products) >= Order::$MAX_PRODUCTS_BY_ORDER) {
-			throw new Exception('Vous ne pouvez pas commander plus de ' . Order::$MAX_PRODUCTS_BY_ORDER . ' produits');
+			throw new Exception('You can\'t add more than ' . Order::$MAX_PRODUCTS_BY_ORDER . ' products');
 		}
 
 		$this->products[] = $product;
@@ -105,11 +135,11 @@ class Order
 	public function setShippingAddress(string $shippingCity, string $shippingAddress, string $shippingCountry): void
 	{
 		if ($this->status !== Order::$CART_STATUS) {
-			throw new Exception(message: 'Vous ne pouvez plus modifier l\'adresse de livraison');
+			throw new Exception(message: 'You can no longer change your address');
 		}
 
 		if (!in_array($shippingCountry, Order::$AUTORIZED_SHIPPING_COUNTRIES)) {
-			throw new Exception(message: 'Vous ne pouvez pas commander dans ce pays');
+			throw new Exception(message: 'You can\'t be delivered in this country');
 		}
 
 		$this->shippingAddress = $shippingAddress;
@@ -121,11 +151,11 @@ class Order
 	public function setShippingMethod(string $shippingMethod): void
 	{
 		if ($this->status !== Order::$SHIPPING_ADDRESS_SET_STATUS) {
-			throw new Exception(message: 'Vous ne pouvez pas choisir de méthode avant d\'avoir renseigné votre adresse');
+			throw new Exception(message: 'You can\'t choose a shipping method before setting the address');
 		}
 
 		if (!in_array($shippingMethod, Order::$AVAILABLE_SHIPPING_METHODS)) {
-			throw new Exception(message: 'Méthode non valide');
+			throw new Exception(message: 'This shipping method is not available');
 		}
 
 		if ($shippingMethod === Order::$PAID_SHIPPING_METHOD) {
@@ -139,7 +169,7 @@ class Order
 	public function pay(): void
 	{
 		if ($this->status !== Order::$SHIPPING_METHOD_SET_STATUS) {
-			throw new Exception(message: 'Vous ne pouvez pas payer avant d\'avoir renseigné la méthode de livraison');
+			throw new Exception(message: 'You can\'t pay before setting the shipping method');
 		}
 
 		$this->status = Order::$PAID_STATUS;

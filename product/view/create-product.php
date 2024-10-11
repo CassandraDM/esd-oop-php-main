@@ -1,5 +1,5 @@
 <?php
-require_once './product/view/partials/header.php';
+require_once './common/view/partials/header.php';
 ?>
 
 <main>
@@ -17,9 +17,9 @@ require_once './product/view/partials/header.php';
             <label for="active">Is your product active?</label>
         </div>
         <br>
-        <button type="submit">Add</button>
+        <button class="button" type="submit">Add</button class="button">
     </form>
 </main>
 
 <?php
-require_once './product/view/partials/footer.php';
+require_once './common/view/partials/footer.php';

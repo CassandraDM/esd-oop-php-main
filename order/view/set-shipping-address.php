@@ -1,4 +1,4 @@
-<?php require_once('./order/view/partials/header.php'); ?>
+<?php require_once('./common/view/partials/header.php'); ?>
 
 <main>
 	<p>Add your Shipping Address : </p>
@@ -17,9 +17,9 @@
 		<label for="shippingAddress">Shipping Address</label>
 		<input type="text" id="shippingAddress" name="shippingAddress" required pattern="^[a-zA-Z0-9\s.-]{5,50}$" title="L'adresse doit contenir entre 5 et 50 caractères et des espaces.">
 
-		<button type="submit">Add</button>
+		<button class="button" type="submit">Add</button class="button">
 
 	</form>
 </main>
 
-<?php require_once('./order/view/partials/footer.php'); ?>
+<?php require_once('./common/view/partials/footer.php'); ?>

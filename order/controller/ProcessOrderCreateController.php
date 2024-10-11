@@ -19,11 +19,29 @@ class CreateOrderController
 				require_once './order/view/order-error.php';
 				return;
 			}
-			$productRepository = new ProductRepository();
-			$allProducts = $productRepository->findAllProducts();
+
 
 			$customerName = $_POST['customerName'];
 			$products = $_POST['products'];
+
+
+			// pour chaque id récupéré : il faut récupérer le produit correspondant
+			// en session
+			// tu regroupes tous les produits en tableau
+
+
+			$productRepository = new ProductRepository();
+			$products = $productRepository->findByIds($products);
+			if (count($products) == 0) {
+				$errorMessage = "You must select at least one product";
+				require_once './order/view/order-error.php';
+				return;
+			}
+
+
+
+
+
 
 			$order = new Order($customerName, $products);
 

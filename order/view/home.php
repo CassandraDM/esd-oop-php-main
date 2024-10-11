@@ -1,4 +1,4 @@
-<?php require_once('./order/view/partials/header.php');
+<?php require_once('./common/view/partials/header.php');
 require_once './product/model/entity/Product.php'; ?>
 <main>
 
@@ -12,23 +12,24 @@ require_once './product/model/entity/Product.php'; ?>
 
 		<select id="product" name="products[]" multiple>
 			<?php
-			foreach ($allProducts as $product) {
+			foreach ($products as $product) {
 				if (!$product->getActive()) {
 					continue;
 				}
 				$productName = $product->getProductName();
+				$id = $product->getId();
 			?>
-				<option><?php echo htmlspecialchars($productName); ?></option>
+				<option value="<?php echo $id; ?>"><?php echo htmlspecialchars($productName); ?></option>
 			<?php
 			}
 			?>
 		</select>
 		<br>
 
-		<button type="submit">Add</button>
+		<button class="button" type="submit">Add</button class="button">
 
 	</form>
 
 </main>
 
-<?php require_once('./order/view/partials/footer.php'); ?>
+<?php require_once('./common/view/partials/footer.php'); ?>

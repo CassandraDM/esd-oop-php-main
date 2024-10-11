@@ -1,4 +1,4 @@
-<?php require_once('./order/view/partials/header.php'); ?>
+<?php require_once('./common/view/partials/header.php'); ?>
 
 <main>
 	<p>Choose your Shipping Method : </p>
@@ -15,9 +15,9 @@
 
 		</select>
 
-		<button type="submit">Confirm</button>
+		<button class="button" type="submit">Confirm</button class="button">
 
 	</form>
 </main>
 
-<?php require_once('./order/view/partials/footer.php'); ?>
+<?php require_once('./common/view/partials/footer.php'); ?>

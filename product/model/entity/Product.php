@@ -37,6 +37,10 @@ class Product
     {
         return $this->active;
     }
+    public function getId(): string
+    {
+        return $this->id;
+    }
     public function createProduct()
     {
         $product = new Product($this->productName, $this->description, $this->price, $this->active, $this->id);
@@ -51,10 +55,5 @@ class Product
             }
         }
         return $this->products;
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 }

@@ -9,6 +9,8 @@ class ProductListController
         $productRepository = new ProductRepository();
         $products = $productRepository->findAllProducts();
 
+
+
         require_once './product/view/product-list.php';
     }
 }
